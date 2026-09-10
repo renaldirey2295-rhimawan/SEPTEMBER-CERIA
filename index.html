@@ -1,0 +1,1835 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Undangan Ulang Tahun | Nama</title>
+
+<meta name="description"
+      content="Undangan ulang tahun">
+
+<!-- GOOGLE FONT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#080808;
+    color:#fff;
+    font-family:'Montserrat',sans-serif;
+    overflow-x:hidden;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+button,
+a{
+    font-family:inherit;
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root{
+    --gold:#d6b36a;
+    --gold-light:#f1d998;
+    --white:#ffffff;
+    --dark:#080808;
+    --dark2:#111111;
+    --gray:#aaaaaa;
+}
+
+
+/* =========================================================
+   LOADING SCREEN
+========================================================= */
+
+#loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#080808;
+
+    z-index:99999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+    transition:opacity 1s ease,
+               visibility 1s ease;
+}
+
+#loader.hide{
+
+    opacity:0;
+
+    visibility:hidden;
+
+}
+
+.loader-ring{
+
+    width:70px;
+
+    height:70px;
+
+    border:2px solid rgba(214,179,106,.2);
+
+    border-top-color:var(--gold);
+
+    border-radius:50%;
+
+    animation:spin 1.2s linear infinite;
+
+    margin-bottom:25px;
+
+}
+
+.loader-text{
+
+    letter-spacing:5px;
+
+    font-size:10px;
+
+    color:#aaa;
+
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
+
+.music-btn{
+
+    position:fixed;
+
+    right:20px;
+
+    top:20px;
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.35);
+
+    background:rgba(0,0,0,.45);
+
+    backdrop-filter:blur(10px);
+
+    color:#fff;
+
+    z-index:5000;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+.music-btn:hover{
+
+    background:var(--gold);
+
+    color:#000;
+
+}
+
+.music-btn.playing{
+
+    animation:musicPulse 1.5s infinite;
+
+}
+
+@keyframes musicPulse{
+
+    0%,100%{
+        box-shadow:0 0 0 rgba(214,179,106,0);
+    }
+
+    50%{
+        box-shadow:0 0 25px rgba(214,179,106,.45);
+    }
+
+}
+
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+section{
+
+    position:relative;
+
+    width:100%;
+
+    overflow:hidden;
+
+}
+
+.container{
+
+    width:min(1100px,90%);
+
+    margin:auto;
+
+}
+
+.section-label{
+
+    color:var(--gold);
+
+    text-transform:uppercase;
+
+    letter-spacing:5px;
+
+    font-size:11px;
+
+    margin-bottom:15px;
+
+}
+
+.section-title{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:clamp(42px,7vw,78px);
+
+    font-weight:500;
+
+    line-height:.95;
+
+}
+
+.section-text{
+
+    color:#aaa;
+
+    font-size:14px;
+
+    line-height:1.9;
+
+    max-width:600px;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    height:100svh;
+
+    min-height:650px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.25),
+            rgba(0,0,0,.75)
+        ),
+
+        url("assets/images/cover.jpg")
+        center/cover no-repeat;
+
+}
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 20%,
+            rgba(0,0,0,.55) 100%
+        );
+
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    width:90%;
+
+    animation:heroFade 2s ease both;
+
+}
+
+@keyframes heroFade{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.hero-small{
+
+    font-size:11px;
+
+    letter-spacing:7px;
+
+    text-transform:uppercase;
+
+    color:#ddd;
+
+    margin-bottom:20px;
+
+}
+
+.hero-name{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:clamp(75px,15vw,160px);
+
+    line-height:.75;
+
+    font-weight:500;
+
+    text-shadow:
+        0 5px 30px rgba(0,0,0,.7);
+
+}
+
+.hero-age{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:clamp(45px,7vw,75px);
+
+    color:var(--gold-light);
+
+    margin-top:25px;
+
+}
+
+.hero-date{
+
+    margin-top:30px;
+
+    font-size:12px;
+
+    letter-spacing:4px;
+
+    color:#ddd;
+
+}
+
+.scroll-down{
+
+    position:absolute;
+
+    bottom:30px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:#fff;
+
+    font-size:10px;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    z-index:3;
+
+}
+
+.scroll-down::after{
+
+    content:"";
+
+    display:block;
+
+    width:1px;
+
+    height:50px;
+
+    background:var(--gold);
+
+    margin:12px auto 0;
+
+    animation:scrollLine 2s infinite;
+
+}
+
+@keyframes scrollLine{
+
+    0%{
+        transform:scaleY(0);
+        transform-origin:top;
+    }
+
+    50%{
+        transform:scaleY(1);
+        transform-origin:top;
+    }
+
+    100%{
+        transform:scaleY(0);
+        transform-origin:bottom;
+    }
+
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro{
+
+    padding:130px 0;
+
+    text-align:center;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(214,179,106,.08),
+            transparent 45%
+        ),
+
+        #080808;
+
+}
+
+.intro .section-text{
+
+    margin:30px auto 0;
+
+}
+
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+.countdown-section{
+
+    padding:100px 0;
+
+    text-align:center;
+
+    background:#0d0d0d;
+
+}
+
+.countdown{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:clamp(15px,5vw,60px);
+
+    margin-top:50px;
+
+    flex-wrap:wrap;
+
+}
+
+.count-box{
+
+    min-width:80px;
+
+}
+
+.count-number{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:clamp(48px,8vw,80px);
+
+    color:var(--gold-light);
+
+    line-height:1;
+
+}
+
+.count-label{
+
+    margin-top:8px;
+
+    color:#777;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+}
+
+
+/* =========================================================
+   EVENT DETAIL
+========================================================= */
+
+.event{
+
+    padding:130px 0;
+
+    background:#080808;
+
+}
+
+.event-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:70px;
+
+    align-items:center;
+
+}
+
+.event-image{
+
+    position:relative;
+
+}
+
+.event-image img{
+
+    width:100%;
+
+    aspect-ratio:4/5;
+
+    object-fit:cover;
+
+    filter:brightness(.8);
+
+}
+
+.event-image::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:15px;
+
+    border:1px solid rgba(214,179,106,.5);
+
+    pointer-events:none;
+
+}
+
+.event-details{
+
+    display:grid;
+
+    gap:25px;
+
+    margin-top:40px;
+
+}
+
+.detail{
+
+    padding-bottom:20px;
+
+    border-bottom:1px solid rgba(255,255,255,.1);
+
+}
+
+.detail-label{
+
+    color:var(--gold);
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    margin-bottom:8px;
+
+}
+
+.detail-value{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:28px;
+
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery{
+
+    padding:130px 0;
+
+    background:#0d0d0d;
+
+    text-align:center;
+
+}
+
+.gallery-grid{
+
+    margin-top:60px;
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:12px;
+
+}
+
+.gallery-item{
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.gallery-item img{
+
+    width:100%;
+
+    aspect-ratio:1/1;
+
+    object-fit:cover;
+
+    transition:transform 1s ease;
+
+}
+
+.gallery-item:hover img{
+
+    transform:scale(1.08);
+
+}
+
+.gallery-item:nth-child(1){
+
+    grid-row:span 2;
+
+}
+
+.gallery-item:nth-child(1) img{
+
+    aspect-ratio:auto;
+
+    height:100%;
+
+}
+
+
+/* =========================================================
+   MAP
+========================================================= */
+
+.location{
+
+    padding:130px 0;
+
+    text-align:center;
+
+}
+
+.map-wrapper{
+
+    margin-top:50px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    overflow:hidden;
+
+}
+
+.map-wrapper iframe{
+
+    width:100%;
+
+    height:450px;
+
+    border:0;
+
+    display:block;
+
+    filter:grayscale(.8);
+
+}
+
+
+/* =========================================================
+   RSVP
+========================================================= */
+
+.rsvp{
+
+    padding:130px 0;
+
+    text-align:center;
+
+    background:
+
+        linear-gradient(
+            rgba(0,0,0,.72),
+            rgba(0,0,0,.88)
+        ),
+
+        url("assets/images/foto4.jpg")
+        center/cover fixed;
+
+}
+
+.rsvp-box{
+
+    max-width:700px;
+
+    margin:auto;
+
+}
+
+.rsvp-text{
+
+    margin:30px auto;
+
+    color:#aaa;
+
+    line-height:1.8;
+
+    font-size:14px;
+
+}
+
+.rsvp-button{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    padding:17px 35px;
+
+    border:1px solid var(--gold);
+
+    color:#fff;
+
+    text-decoration:none;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    font-size:10px;
+
+    transition:.4s;
+
+}
+
+.rsvp-button:hover{
+
+    background:var(--gold);
+
+    color:#000;
+
+}
+
+
+/* =========================================================
+   CLOSING
+========================================================= */
+
+.closing{
+
+    min-height:70vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    background:
+
+        linear-gradient(
+            rgba(0,0,0,.35),
+            rgba(0,0,0,.8)
+        ),
+
+        url("assets/images/cover.jpg")
+        center/cover no-repeat;
+
+}
+
+.closing-content{
+
+    width:90%;
+
+}
+
+.closing-name{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:clamp(60px,12vw,120px);
+
+    color:var(--gold-light);
+
+}
+
+.closing p{
+
+    color:#ddd;
+
+    font-size:11px;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    margin-top:20px;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    background:#050505;
+
+    padding:30px;
+
+    text-align:center;
+
+    color:#555;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+}
+
+
+/* =========================================================
+   FADE ANIMATION
+========================================================= */
+
+.fade{
+
+    opacity:0;
+
+    transform:translateY(35px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+
+}
+
+.fade.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:768px){
+
+    .event-grid{
+
+        grid-template-columns:1fr;
+
+        gap:50px;
+
+    }
+
+    .event-image{
+
+        max-width:500px;
+
+        margin:auto;
+
+    }
+
+    .gallery-grid{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+    .gallery-item:nth-child(1){
+
+        grid-row:span 1;
+
+    }
+
+    .gallery-item:nth-child(1) img{
+
+        aspect-ratio:1/1;
+
+        height:auto;
+
+    }
+
+    .map-wrapper iframe{
+
+        height:350px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .hero-small{
+
+        letter-spacing:4px;
+
+    }
+
+    .hero-date{
+
+        letter-spacing:2px;
+
+    }
+
+    .countdown{
+
+        gap:20px;
+
+    }
+
+    .count-box{
+
+        min-width:60px;
+
+    }
+
+    .section-title{
+
+        font-size:48px;
+
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOADER
+===================================================== -->
+
+<div id="loader">
+
+    <div class="loader-ring"></div>
+
+    <div class="loader-text">
+        MEMUAT UNDANGAN
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MUSIC
+===================================================== -->
+
+<audio id="birthdayMusic"
+       src="assets/music/birthday.mp3"
+       loop>
+</audio>
+
+<button class="music-btn"
+        id="musicButton"
+        aria-label="Music">
+
+    ♪
+
+</button>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-small">
+            The Birthday Celebration
+        </div>
+
+        <div class="hero-name">
+            RENALDI
+        </div>
+
+        <div class="hero-age">
+            31
+        </div>
+
+        <div class="hero-date">
+            SABTU • 12 DESEMBER 2026
+        </div>
+
+    </div>
+
+    <div class="scroll-down">
+        Scroll
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="intro">
+
+    <div class="container fade">
+
+        <div class="section-label">
+            You're Invited
+        </div>
+
+        <h2 class="section-title">
+            Let's Celebrate
+        </h2>
+
+        <p class="section-text">
+
+            Dengan penuh kebahagiaan,
+            saya mengundang keluarga,
+            sahabat dan orang-orang terdekat
+            untuk hadir dan merayakan
+            hari istimewa bersama.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     COUNTDOWN
+===================================================== -->
+
+<section class="countdown-section">
+
+    <div class="container fade">
+
+        <div class="section-label">
+            Counting Down
+        </div>
+
+        <h2 class="section-title">
+            Until The Day
+        </h2>
+
+
+        <div class="countdown">
+
+            <div class="count-box">
+
+                <div class="count-number"
+                     id="days">
+                    00
+                </div>
+
+                <div class="count-label">
+                    Days
+                </div>
+
+            </div>
+
+
+            <div class="count-box">
+
+                <div class="count-number"
+                     id="hours">
+                    00
+                </div>
+
+                <div class="count-label">
+                    Hours
+                </div>
+
+            </div>
+
+
+            <div class="count-box">
+
+                <div class="count-number"
+                     id="minutes">
+                    00
+                </div>
+
+                <div class="count-label">
+                    Minutes
+                </div>
+
+            </div>
+
+
+            <div class="count-box">
+
+                <div class="count-number"
+                     id="seconds">
+                    00
+                </div>
+
+                <div class="count-label">
+                    Seconds
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     EVENT
+===================================================== -->
+
+<section class="event">
+
+    <div class="container">
+
+        <div class="event-grid">
+
+
+            <div class="event-image fade">
+
+                <img src="assets/images/foto1.jpg"
+                     alt="Birthday">
+
+            </div>
+
+
+            <div class="fade">
+
+                <div class="section-label">
+                    The Celebration
+                </div>
+
+                <h2 class="section-title">
+                    Save The Date
+                </h2>
+
+
+                <div class="event-details">
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Date
+                        </div>
+
+                        <div class="detail-value">
+                            Sabtu, 12 Desember 2026
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Time
+                        </div>
+
+                        <div class="detail-value">
+                            19.00 WIB – Selesai
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Location
+                        </div>
+
+                        <div class="detail-value">
+                            Nama Tempat Acara
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Address
+                        </div>
+
+                        <div class="detail-value">
+                            Jl. Contoh Alamat No. 123
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+<section class="gallery">
+
+    <div class="container">
+
+        <div class="fade">
+
+            <div class="section-label">
+                Memories
+            </div>
+
+            <h2 class="section-title">
+                Gallery
+            </h2>
+
+        </div>
+
+
+        <div class="gallery-grid">
+
+
+            <div class="gallery-item fade">
+
+                <img src="assets/images/foto2.jpg"
+                     alt="Gallery">
+
+            </div>
+
+
+            <div class="gallery-item fade">
+
+                <img src="assets/images/foto3.jpg"
+                     alt="Gallery">
+
+            </div>
+
+
+            <div class="gallery-item fade">
+
+                <img src="assets/images/foto4.jpg"
+                     alt="Gallery">
+
+            </div>
+
+
+            <div class="gallery-item fade">
+
+                <img src="assets/images/cover.jpg"
+                     alt="Gallery">
+
+            </div>
+
+
+            <div class="gallery-item fade">
+
+                <img src="assets/images/foto1.jpg"
+                     alt="Gallery">
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LOCATION
+===================================================== -->
+
+<section class="location">
+
+    <div class="container fade">
+
+        <div class="section-label">
+            Where We Meet
+        </div>
+
+        <h2 class="section-title">
+            Location
+        </h2>
+
+        <p class="section-text"
+           style="margin:25px auto 0;">
+
+            Kami akan sangat senang
+            bertemu dengan Anda
+            di acara spesial ini.
+
+        </p>
+
+
+        <div class="map-wrapper">
+
+            <!--
+            GANTI LINK GOOGLE MAPS DI BAWAH
+
+            Contoh:
+
+            https://www.google.com/maps/embed?pb=XXXX
+
+            -->
+
+            <iframe
+
+                src="https://www.google.com/maps?q=Jakarta&output=embed"
+
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+
+            </iframe>
+
+        </div>
+
+
+        <br>
+
+
+        <a
+
+            href="https://www.google.com/maps/search/?api=1&query=Jakarta"
+
+            target="_blank"
+
+            class="rsvp-button">
+
+            Buka Google Maps
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     RSVP
+===================================================== -->
+
+<section class="rsvp">
+
+    <div class="container">
+
+        <div class="rsvp-box fade">
+
+            <div class="section-label">
+                Confirmation
+            </div>
+
+            <h2 class="section-title">
+                Will You Join Us?
+            </h2>
+
+            <p class="rsvp-text">
+
+                Kehadiran dan doa baik Anda
+                akan menjadi kebahagiaan
+                tersendiri bagi kami.
+
+            </p>
+
+
+            <!--
+            GANTI NOMOR WHATSAPP
+
+            Format:
+
+            628xxxxxxxxxx
+
+            -->
+
+            <a
+
+                class="rsvp-button"
+
+                href="https://wa.me/6281234567890?text=Halo%20Renaldi,%20saya%20akan%20hadir%20di%20acara%20ulang%20tahun."
+
+                target="_blank">
+
+                ✦ Konfirmasi Kehadiran
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CLOSING
+===================================================== -->
+
+<section class="closing">
+
+    <div class="closing-content fade">
+
+        <div class="section-label">
+            See You There
+        </div>
+
+        <div class="closing-name">
+            RENALDI
+        </div>
+
+        <p>
+            Thank you for being part of my special day
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    © 2026 • Birthday Celebration
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+window.addEventListener("load", function(){
+
+    setTimeout(function(){
+
+        document
+            .getElementById("loader")
+            .classList.add("hide");
+
+    },800);
+
+});
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+const music =
+    document.getElementById("birthdayMusic");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+
+let musicPlaying = false;
+
+
+musicButton.addEventListener("click", function(){
+
+    if(musicPlaying){
+
+        music.pause();
+
+        musicButton.innerHTML = "♪";
+
+        musicButton.classList.remove("playing");
+
+        musicPlaying = false;
+
+    }else{
+
+        music.play()
+            .then(function(){
+
+                musicButton.innerHTML = "♫";
+
+                musicButton.classList.add("playing");
+
+                musicPlaying = true;
+
+            })
+            .catch(function(){
+
+                alert(
+                    "Silakan tekan tombol musik sekali lagi."
+                );
+
+            });
+
+    }
+
+});
+
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+/*
+   GANTI TANGGAL ACARA DI SINI
+
+   Format:
+
+   YYYY-MM-DDTHH:MM:SS+07:00
+*/
+
+const targetDate =
+    new Date("2026-12-12T19:00:00+07:00");
+
+
+function updateCountdown(){
+
+    const now =
+        new Date().getTime();
+
+    const target =
+        targetDate.getTime();
+
+    const distance =
+        target - now;
+
+
+    if(distance <= 0){
+
+        document.getElementById("days")
+            .innerText = "00";
+
+        document.getElementById("hours")
+            .innerText = "00";
+
+        document.getElementById("minutes")
+            .innerText = "00";
+
+        document.getElementById("seconds")
+            .innerText = "00";
+
+        return;
+
+    }
+
+
+    const days =
+        Math.floor(
+            distance /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    const hours =
+        Math.floor(
+            (distance %
+            (1000 * 60 * 60 * 24)) /
+            (1000 * 60 * 60)
+        );
+
+
+    const minutes =
+        Math.floor(
+            (distance %
+            (1000 * 60 * 60)) /
+            (1000 * 60)
+        );
+
+
+    const seconds =
+        Math.floor(
+            (distance %
+            (1000 * 60)) /
+            1000
+        );
+
+
+    document.getElementById("days")
+        .innerText =
+        String(days).padStart(2,"0");
+
+
+    document.getElementById("hours")
+        .innerText =
+        String(hours).padStart(2,"0");
+
+
+    document.getElementById("minutes")
+        .innerText =
+        String(minutes).padStart(2,"0");
+
+
+    document.getElementById("seconds")
+        .innerText =
+        String(seconds).padStart(2,"0");
+
+}
+
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+updateCountdown();
+
+
+/* =========================================================
+   FADE ON SCROLL
+========================================================= */
+
+const fadeElements =
+    document.querySelectorAll(".fade");
+
+
+const observer =
+    new IntersectionObserver(
+
+        function(entries){
+
+            entries.forEach(function(entry){
+
+                if(entry.isIntersecting){
+
+                    entry.target
+                        .classList
+                        .add("show");
+
+                }
+
+            });
+
+        },
+
+        {
+
+            threshold:0.15
+
+        }
+
+    );
+
+
+fadeElements.forEach(function(element){
+
+    observer.observe(element);
+
+});
+
+
+/* =========================================================
+   AUTO START MUSIC AFTER FIRST INTERACTION
+========================================================= */
+
+let musicStarted = false;
+
+
+function startMusic(){
+
+    if(musicStarted){
+        return;
+    }
+
+
+    music.play()
+        .then(function(){
+
+            musicPlaying = true;
+
+            musicStarted = true;
+
+            musicButton.innerHTML = "♫";
+
+            musicButton.classList.add("playing");
+
+        })
+        .catch(function(){
+
+            // Browser memblokir autoplay.
+            // User tetap bisa menekan tombol musik.
+
+        });
+
+
+    document.removeEventListener(
+        "click",
+        startMusic
+    );
+
+    document.removeEventListener(
+        "touchstart",
+        startMusic
+    );
+
+}
+
+
+document.addEventListener(
+    "click",
+    startMusic
+);
+
+
+document.addEventListener(
+    "touchstart",
+    startMusic
+);
+
+
+/* =========================================================
+   IMAGE FADE
+========================================================= */
+
+const images =
+    document.querySelectorAll("img");
+
+
+images.forEach(function(img){
+
+    img.addEventListener(
+        "load",
+        function(){
+
+            img.style.opacity = "1";
+
+        }
+    );
+
+});
+
+
+</script>
+
+
+</body>
+</html>
+```
