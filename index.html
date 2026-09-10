@@ -169,7 +169,7 @@ a{
             rgba(0,0,0,.88)
         ),
 
-        url("assets/jpg/cover.jpeg")
+        url("assets/images/cover.jpeg")
         center center / cover no-repeat;
 
     display:flex;
@@ -405,7 +405,7 @@ a{
             rgba(0,0,0,.78)
         ),
 
-        url("assets/foto/cover.jpg")
+        url("assets/images/cover.jpeg")
         center / cover no-repeat;
 
     animation:heroZoom 15s ease-in-out infinite alternate;
@@ -925,7 +925,9 @@ section{
     object-fit:cover;
 
     transition:
+
         transform 1s ease,
+
         filter .5s ease;
 
 }
@@ -1120,7 +1122,7 @@ section{
             rgba(0,0,0,.9)
         ),
 
-        url("assets/jpeg/foto4.jpeg")
+        url("assets/images/foto4.jpeg")
         center / cover fixed;
 
 }
@@ -1189,7 +1191,7 @@ section{
             rgba(0,0,0,.85)
         ),
 
-        url("assets/foto1/cover.jpeg")
+        url("assets/images/foto1.jpeg")
         center / cover no-repeat;
 
 }
@@ -1384,7 +1386,7 @@ footer{
 
         <div class="hero-name"
              id="birthdayName">
-            REAGIL SUNUAJI
+            RAGIL SUNUAJI
         </div>
 
         <div class="hero-age"
@@ -1673,42 +1675,48 @@ footer{
 
             <div class="gallery-item fade">
 
-                <img src="assets/images/foto2.jpeg">
+                <img src="assets/images/foto2.jpeg"
+                     alt="Birthday Gallery 1">
 
             </div>
 
 
             <div class="gallery-item fade">
 
-                <img src="assets/images/foto3.jpeg">
+                <img src="assets/images/foto3.jpeg"
+                     alt="Birthday Gallery 2">
 
             </div>
 
 
             <div class="gallery-item fade">
 
-                <img src="assets/images/foto4.jpeg">
+                <img src="assets/images/foto4.jpeg"
+                     alt="Birthday Gallery 3">
 
             </div>
 
 
             <div class="gallery-item fade">
 
-                <img src="assets/images/foto5.jpeg">
+                <img src="assets/images/foto5.jpeg"
+                     alt="Birthday Gallery 4">
 
             </div>
 
 
             <div class="gallery-item fade">
 
-                <img src="assets/images/foto6.jpeg">
+                <img src="assets/images/foto6.jpeg"
+                     alt="Birthday Gallery 5">
 
             </div>
 
 
             <div class="gallery-item fade">
 
-                <img src="assets/foto5/foto2.jpg">
+                <img src="assets/images/cover.jpeg"
+                     alt="Birthday Gallery 6">
 
             </div>
 
@@ -1730,7 +1738,8 @@ footer{
         ×
     </div>
 
-    <img id="lightboxImage">
+    <img id="lightboxImage"
+         alt="Gallery Preview">
 
 </div>
 
@@ -1888,7 +1897,7 @@ footer{
 /* =========================================================
    =========================================================
 
-                 CONFIGURATION AREA
+                CONFIGURATION AREA
 
    CUKUP EDIT BAGIAN INI
 
@@ -1929,7 +1938,6 @@ const CONFIG = {
 
        Format:
        YYYY-MM-DDTHH:MM:SS+07:00
-
     =============================== */
 
     countdownDate:
@@ -1952,7 +1960,6 @@ const CONFIG = {
 
        GANTI DENGAN LINK LOKASI
        GOOGLE MAPS KAMU
-
     =============================== */
 
     mapEmbed:
@@ -1967,7 +1974,6 @@ const CONFIG = {
 
        Format:
        628xxxxxxxxxx
-
     =============================== */
 
     whatsapp:
@@ -1979,8 +1985,40 @@ const CONFIG = {
     =============================== */
 
     whatsappMessage:
-        "Halo Ragil, saya akan hadir di acara ulang tahun kamu."
+        "Halo Ragil, saya akan hadir di acara ulang tahun kamu.",
 
+
+    /* ===============================
+       GAMBAR
+
+       Semua foto berada di:
+       assets/images/
+    =============================== */
+
+    images:{
+
+        cover:
+            "assets/images/cover.jpeg",
+
+        event:
+            "assets/images/foto1.jpeg",
+
+        gallery:[
+            "assets/images/foto2.jpeg",
+            "assets/images/foto3.jpeg",
+            "assets/images/foto4.jpeg",
+            "assets/images/foto5.jpeg",
+            "assets/images/foto6.jpeg",
+            "assets/images/cover.jpeg"
+        ],
+
+        rsvp:
+            "assets/images/foto4.jpeg",
+
+        closing:
+            "assets/images/foto1.jpeg"
+
+    }
 
 };
 
@@ -2079,6 +2117,86 @@ document.getElementById(
 
 
 /* =========================================================
+   SET GAMBAR DARI CONFIG
+========================================================= */
+
+document.getElementById(
+    "opening"
+).style.backgroundImage =
+
+    `linear-gradient(
+        rgba(0,0,0,.45),
+        rgba(0,0,0,.88)
+    ),
+    url("${CONFIG.images.cover}")`;
+
+
+document.querySelector(
+    ".hero-bg"
+).style.backgroundImage =
+
+    `linear-gradient(
+        rgba(0,0,0,.25),
+        rgba(0,0,0,.78)
+    ),
+    url("${CONFIG.images.cover}")`;
+
+
+document.querySelector(
+    ".event-photo img"
+).src =
+    CONFIG.images.event;
+
+
+document.querySelector(
+    ".rsvp"
+).style.backgroundImage =
+
+    `linear-gradient(
+        rgba(0,0,0,.65),
+        rgba(0,0,0,.9)
+    ),
+    url("${CONFIG.images.rsvp}")`;
+
+
+document.querySelector(
+    ".closing"
+).style.backgroundImage =
+
+    `linear-gradient(
+        rgba(0,0,0,.3),
+        rgba(0,0,0,.85)
+    ),
+    url("${CONFIG.images.closing}")`;
+
+
+/* =========================================================
+   SET GALLERY
+========================================================= */
+
+const galleryImages =
+    document.querySelectorAll(
+        ".gallery-item img"
+    );
+
+
+galleryImages.forEach(
+
+    function(image,index){
+
+        if(CONFIG.images.gallery[index]){
+
+            image.src =
+                CONFIG.images.gallery[index];
+
+        }
+
+    }
+
+);
+
+
+/* =========================================================
    GOOGLE MAP
 ========================================================= */
 
@@ -2122,6 +2240,7 @@ document.getElementById(
 ========================================================= */
 
 window.addEventListener(
+
     "load",
 
     function(){
@@ -2184,6 +2303,7 @@ openButton.addEventListener(
             "hide"
         );
 
+
         document.body.classList.remove(
             "locked"
         );
@@ -2201,6 +2321,8 @@ openButton.addEventListener(
 
                 musicButton.innerHTML =
                     "♫";
+
+                playing = true;
 
             }
 
@@ -2305,17 +2427,21 @@ function updateCountdown(){
             "days"
         ).innerText = "00";
 
+
         document.getElementById(
             "hours"
         ).innerText = "00";
+
 
         document.getElementById(
             "minutes"
         ).innerText = "00";
 
+
         document.getElementById(
             "seconds"
         ).innerText = "00";
+
 
         return;
 
@@ -2386,6 +2512,7 @@ function updateCountdown(){
     document.getElementById(
         "days"
     ).innerText =
+
         String(days)
         .padStart(2,"0");
 
@@ -2393,6 +2520,7 @@ function updateCountdown(){
     document.getElementById(
         "hours"
     ).innerText =
+
         String(hours)
         .padStart(2,"0");
 
@@ -2400,6 +2528,7 @@ function updateCountdown(){
     document.getElementById(
         "minutes"
     ).innerText =
+
         String(minutes)
         .padStart(2,"0");
 
@@ -2407,6 +2536,7 @@ function updateCountdown(){
     document.getElementById(
         "seconds"
     ).innerText =
+
         String(seconds)
         .padStart(2,"0");
 
@@ -2483,9 +2613,9 @@ fadeElements.forEach(
    GALLERY LIGHTBOX
 ========================================================= */
 
-const galleryjpg =
+const galleryItems =
     document.querySelectorAll(
-        ".gallery-item img"
+        ".gallery-item"
     );
 
 
@@ -2501,15 +2631,18 @@ const lightboxImage =
     );
 
 
-galleryjpg.forEach(
+galleryItems.forEach(
 
-    function(image){
+    function(item){
 
-        image.addEventListener(
+        item.addEventListener(
 
             "click",
 
             function(){
+
+                const image =
+                    item.querySelector("img");
 
                 lightboxImage.src =
                     image.src;
@@ -2526,6 +2659,10 @@ galleryjpg.forEach(
 
 );
 
+
+/* =========================================================
+   CLOSE LIGHTBOX
+========================================================= */
 
 document
     .querySelector(
