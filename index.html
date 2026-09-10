@@ -1,26 +1,33 @@
-```html
 <!DOCTYPE html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Undangan Ulang Tahun | Nama</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Invitation</title>
 
 <meta name="description"
-      content="Undangan ulang tahun">
+      content="You're invited to a special birthday celebration.">
 
-<!-- GOOGLE FONT -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
       rel="stylesheet">
 
+
 <style>
 
 /* =========================================================
-   RESET
+   GLOBAL
 ========================================================= */
 
 *{
@@ -34,15 +41,20 @@ html{
 }
 
 body{
+    margin:0;
     background:#080808;
     color:#fff;
     font-family:'Montserrat',sans-serif;
     overflow-x:hidden;
 }
 
+body.locked{
+    overflow:hidden;
+}
+
 img{
-    max-width:100%;
     display:block;
+    max-width:100%;
 }
 
 button,
@@ -50,23 +62,23 @@ a{
     font-family:inherit;
 }
 
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-
 :root{
-    --gold:#d6b36a;
-    --gold-light:#f1d998;
-    --white:#ffffff;
-    --dark:#080808;
-    --dark2:#111111;
-    --gray:#aaaaaa;
+
+    --gold:#d4af65;
+    --gold2:#f3d995;
+
+    --black:#080808;
+    --black2:#111;
+
+    --white:#fff;
+
+    --gray:#a5a5a5;
+
 }
 
 
 /* =========================================================
-   LOADING SCREEN
+   LOADING
 ========================================================= */
 
 #loader{
@@ -77,18 +89,20 @@ a{
 
     background:#080808;
 
-    z-index:99999;
+    z-index:999999;
 
     display:flex;
 
-    align-items:center;
-
     justify-content:center;
+
+    align-items:center;
 
     flex-direction:column;
 
-    transition:opacity 1s ease,
-               visibility 1s ease;
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+
 }
 
 #loader.hide{
@@ -99,35 +113,35 @@ a{
 
 }
 
-.loader-ring{
+.loader-circle{
 
-    width:70px;
+    width:60px;
 
-    height:70px;
-
-    border:2px solid rgba(214,179,106,.2);
-
-    border-top-color:var(--gold);
+    height:60px;
 
     border-radius:50%;
 
-    animation:spin 1.2s linear infinite;
+    border:1px solid rgba(255,255,255,.15);
 
-    margin-bottom:25px;
+    border-top-color:var(--gold);
+
+    animation:rotateLoader 1s linear infinite;
 
 }
 
 .loader-text{
 
+    margin-top:20px;
+
+    font-size:9px;
+
     letter-spacing:5px;
 
-    font-size:10px;
-
-    color:#aaa;
+    color:#888;
 
 }
 
-@keyframes spin{
+@keyframes rotateLoader{
 
     to{
         transform:rotate(360deg);
@@ -137,34 +151,26 @@ a{
 
 
 /* =========================================================
-   MUSIC BUTTON
+   OPENING
 ========================================================= */
 
-.music-btn{
+#opening{
 
     position:fixed;
 
-    right:20px;
+    inset:0;
 
-    top:20px;
+    z-index:99999;
 
-    width:48px;
+    background:
 
-    height:48px;
+        linear-gradient(
+            rgba(0,0,0,.45),
+            rgba(0,0,0,.88)
+        ),
 
-    border-radius:50%;
-
-    border:1px solid rgba(255,255,255,.35);
-
-    background:rgba(0,0,0,.45);
-
-    backdrop-filter:blur(10px);
-
-    color:#fff;
-
-    z-index:5000;
-
-    cursor:pointer;
+        url("assets/images/cover.jpg")
+        center center / cover no-repeat;
 
     display:flex;
 
@@ -172,13 +178,119 @@ a{
 
     justify-content:center;
 
-    font-size:18px;
+    text-align:center;
 
-    transition:.3s;
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
 
 }
 
-.music-btn:hover{
+#opening.hide{
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+}
+
+.opening-content{
+
+    width:90%;
+
+    max-width:600px;
+
+    animation:
+        openingFade 1.5s ease;
+
+}
+
+@keyframes openingFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.opening-small{
+
+    font-size:10px;
+
+    letter-spacing:6px;
+
+    color:#ddd;
+
+    text-transform:uppercase;
+
+    margin-bottom:20px;
+
+}
+
+.opening-title{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:
+        clamp(65px,15vw,120px);
+
+    line-height:.8;
+
+    color:#fff;
+
+}
+
+.opening-subtitle{
+
+    margin-top:30px;
+
+    color:#bbb;
+
+    font-size:11px;
+
+    letter-spacing:3px;
+
+}
+
+.open-button{
+
+    margin-top:40px;
+
+    padding:16px 35px;
+
+    border:1px solid var(--gold);
+
+    background:rgba(0,0,0,.3);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    text-transform:uppercase;
+
+    letter-spacing:3px;
+
+    font-size:10px;
+
+    transition:.4s;
+
+}
+
+.open-button:hover{
 
     background:var(--gold);
 
@@ -186,82 +298,70 @@ a{
 
 }
 
-.music-btn.playing{
 
-    animation:musicPulse 1.5s infinite;
+/* =========================================================
+   MUSIC
+========================================================= */
+
+.music-button{
+
+    position:fixed;
+
+    top:20px;
+
+    right:20px;
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    z-index:9000;
+
+    background:rgba(0,0,0,.45);
+
+    border:1px solid rgba(255,255,255,.3);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(10px);
+
+    transition:.3s;
 
 }
 
-@keyframes musicPulse{
+.music-button:hover{
+
+    background:var(--gold);
+
+    color:#000;
+
+}
+
+.music-button.playing{
+
+    animation:musicGlow 1.5s infinite;
+
+}
+
+@keyframes musicGlow{
 
     0%,100%{
-        box-shadow:0 0 0 rgba(214,179,106,0);
+
+        box-shadow:
+            0 0 0 rgba(212,175,101,0);
+
     }
 
     50%{
-        box-shadow:0 0 25px rgba(214,179,106,.45);
+
+        box-shadow:
+            0 0 25px rgba(212,175,101,.5);
+
     }
-
-}
-
-
-/* =========================================================
-   GENERAL
-========================================================= */
-
-section{
-
-    position:relative;
-
-    width:100%;
-
-    overflow:hidden;
-
-}
-
-.container{
-
-    width:min(1100px,90%);
-
-    margin:auto;
-
-}
-
-.section-label{
-
-    color:var(--gold);
-
-    text-transform:uppercase;
-
-    letter-spacing:5px;
-
-    font-size:11px;
-
-    margin-bottom:15px;
-
-}
-
-.section-title{
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:clamp(42px,7vw,78px);
-
-    font-weight:500;
-
-    line-height:.95;
-
-}
-
-.section-text{
-
-    color:#aaa;
-
-    font-size:14px;
-
-    line-height:1.9;
-
-    max-width:600px;
 
 }
 
@@ -276,28 +376,55 @@ section{
 
     min-height:650px;
 
-    display:flex;
+    position:relative;
 
-    align-items:center;
+    display:flex;
 
     justify-content:center;
 
+    align-items:center;
+
     text-align:center;
+
+    overflow:hidden;
+
+    background:#000;
+
+}
+
+.hero-bg{
+
+    position:absolute;
+
+    inset:-5%;
 
     background:
 
         linear-gradient(
-            to bottom,
             rgba(0,0,0,.25),
-            rgba(0,0,0,.75)
+            rgba(0,0,0,.78)
         ),
 
         url("assets/images/cover.jpg")
-        center/cover no-repeat;
+        center / cover no-repeat;
+
+    animation:heroZoom 15s ease-in-out infinite alternate;
 
 }
 
-.hero::before{
+@keyframes heroZoom{
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.1);
+    }
+
+}
+
+.hero::after{
 
     content:"";
 
@@ -306,10 +433,11 @@ section{
     inset:0;
 
     background:
+
         radial-gradient(
             circle at center,
             transparent 20%,
-            rgba(0,0,0,.55) 100%
+            rgba(0,0,0,.65) 100%
         );
 
 }
@@ -322,50 +450,37 @@ section{
 
     width:90%;
 
-    animation:heroFade 2s ease both;
-
-}
-
-@keyframes heroFade{
-
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
 }
 
 .hero-small{
 
-    font-size:11px;
+    font-size:10px;
 
     letter-spacing:7px;
 
-    text-transform:uppercase;
-
     color:#ddd;
 
-    margin-bottom:20px;
+    text-transform:uppercase;
 
 }
 
 .hero-name{
 
+    margin-top:20px;
+
     font-family:'Cormorant Garamond',serif;
 
-    font-size:clamp(75px,15vw,160px);
+    font-size:
+        clamp(75px,16vw,170px);
 
     line-height:.75;
 
     font-weight:500;
 
+    color:#fff;
+
     text-shadow:
-        0 5px 30px rgba(0,0,0,.7);
+        0 10px 40px rgba(0,0,0,.8);
 
 }
 
@@ -373,19 +488,20 @@ section{
 
     font-family:'Cormorant Garamond',serif;
 
-    font-size:clamp(45px,7vw,75px);
+    font-size:
+        clamp(45px,8vw,80px);
 
-    color:var(--gold-light);
+    color:var(--gold2);
 
-    margin-top:25px;
+    margin-top:30px;
 
 }
 
 .hero-date{
 
-    margin-top:30px;
+    margin-top:25px;
 
-    font-size:12px;
+    font-size:10px;
 
     letter-spacing:4px;
 
@@ -393,62 +509,180 @@ section{
 
 }
 
-.scroll-down{
+.guest-name{
+
+    margin-top:40px;
+
+    color:#ccc;
+
+    font-size:12px;
+
+}
+
+.guest-name strong{
+
+    display:block;
+
+    margin-top:8px;
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:30px;
+
+    color:var(--gold2);
+
+    font-weight:500;
+
+}
+
+.scroll-indicator{
 
     position:absolute;
 
-    bottom:30px;
+    bottom:25px;
 
     left:50%;
 
     transform:translateX(-50%);
 
-    color:#fff;
+    z-index:3;
 
-    font-size:10px;
+    font-size:8px;
 
     letter-spacing:4px;
 
-    text-transform:uppercase;
-
-    z-index:3;
+    color:#aaa;
 
 }
 
-.scroll-down::after{
-
-    content:"";
+.scroll-indicator span{
 
     display:block;
 
-    width:1px;
+    height:45px;
 
-    height:50px;
+    width:1px;
 
     background:var(--gold);
 
-    margin:12px auto 0;
+    margin:10px auto 0;
 
-    animation:scrollLine 2s infinite;
+    animation:scrollAnimation 2s infinite;
 
 }
 
-@keyframes scrollLine{
+@keyframes scrollAnimation{
 
     0%{
+
         transform:scaleY(0);
+
         transform-origin:top;
+
     }
 
     50%{
+
         transform:scaleY(1);
+
         transform-origin:top;
+
     }
 
     100%{
+
         transform:scaleY(0);
+
         transform-origin:bottom;
+
     }
+
+}
+
+
+/* =========================================================
+   COMMON
+========================================================= */
+
+section{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.container{
+
+    width:min(1100px,90%);
+
+    margin:auto;
+
+}
+
+.label{
+
+    color:var(--gold);
+
+    text-transform:uppercase;
+
+    letter-spacing:5px;
+
+    font-size:9px;
+
+    margin-bottom:18px;
+
+}
+
+.title{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:
+        clamp(48px,8vw,80px);
+
+    line-height:.95;
+
+    font-weight:500;
+
+}
+
+.description{
+
+    margin-top:30px;
+
+    color:#999;
+
+    font-size:13px;
+
+    line-height:2;
+
+}
+
+
+/* =========================================================
+   FADE
+========================================================= */
+
+.fade{
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:
+
+        opacity 1.2s ease,
+
+        transform 1.2s ease;
+
+}
+
+.fade.show{
+
+    opacity:1;
+
+    transform:translateY(0);
 
 }
 
@@ -459,7 +693,7 @@ section{
 
 .intro{
 
-    padding:130px 0;
+    padding:140px 0;
 
     text-align:center;
 
@@ -467,7 +701,7 @@ section{
 
         radial-gradient(
             circle at 50% 0%,
-            rgba(214,179,106,.08),
+            rgba(212,175,101,.1),
             transparent 45%
         ),
 
@@ -475,9 +709,13 @@ section{
 
 }
 
-.intro .section-text{
+.intro .description{
 
-    margin:30px auto 0;
+    max-width:650px;
+
+    margin-left:auto;
+
+    margin-right:auto;
 
 }
 
@@ -488,31 +726,25 @@ section{
 
 .countdown-section{
 
-    padding:100px 0;
+    padding:110px 0;
 
     text-align:center;
 
-    background:#0d0d0d;
+    background:#101010;
 
 }
 
 .countdown{
 
+    margin-top:55px;
+
     display:flex;
 
     justify-content:center;
 
-    gap:clamp(15px,5vw,60px);
-
-    margin-top:50px;
+    gap:clamp(20px,6vw,70px);
 
     flex-wrap:wrap;
-
-}
-
-.count-box{
-
-    min-width:80px;
 
 }
 
@@ -520,9 +752,10 @@ section{
 
     font-family:'Cormorant Garamond',serif;
 
-    font-size:clamp(48px,8vw,80px);
+    color:var(--gold2);
 
-    color:var(--gold-light);
+    font-size:
+        clamp(50px,8vw,85px);
 
     line-height:1;
 
@@ -532,24 +765,24 @@ section{
 
     margin-top:8px;
 
-    color:#777;
-
-    font-size:9px;
+    font-size:8px;
 
     letter-spacing:3px;
 
     text-transform:uppercase;
 
+    color:#666;
+
 }
 
 
 /* =========================================================
-   EVENT DETAIL
+   EVENT
 ========================================================= */
 
 .event{
 
-    padding:130px 0;
+    padding:140px 0;
 
     background:#080808;
 
@@ -559,21 +792,23 @@ section{
 
     display:grid;
 
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+        minmax(0,1fr)
+        minmax(0,1fr);
 
-    gap:70px;
+    gap:80px;
 
     align-items:center;
 
 }
 
-.event-image{
+.event-photo{
 
     position:relative;
 
 }
 
-.event-image img{
+.event-photo img{
 
     width:100%;
 
@@ -581,11 +816,11 @@ section{
 
     object-fit:cover;
 
-    filter:brightness(.8);
+    filter:brightness(.82);
 
 }
 
-.event-image::after{
+.event-photo::after{
 
     content:"";
 
@@ -593,17 +828,11 @@ section{
 
     inset:15px;
 
-    border:1px solid rgba(214,179,106,.5);
-
-    pointer-events:none;
+    border:1px solid rgba(212,175,101,.5);
 
 }
 
 .event-details{
-
-    display:grid;
-
-    gap:25px;
 
     margin-top:40px;
 
@@ -611,23 +840,31 @@ section{
 
 .detail{
 
-    padding-bottom:20px;
+    padding:20px 0;
 
-    border-bottom:1px solid rgba(255,255,255,.1);
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+
+}
+
+.detail:first-child{
+
+    border-top:
+        1px solid rgba(255,255,255,.08);
 
 }
 
 .detail-label{
 
-    color:var(--gold);
+    font-size:8px;
 
-    font-size:9px;
-
-    letter-spacing:3px;
+    letter-spacing:4px;
 
     text-transform:uppercase;
 
-    margin-bottom:8px;
+    color:var(--gold);
+
+    margin-bottom:7px;
 
 }
 
@@ -635,7 +872,9 @@ section{
 
     font-family:'Cormorant Garamond',serif;
 
-    font-size:28px;
+    font-size:27px;
+
+    color:#eee;
 
 }
 
@@ -646,9 +885,9 @@ section{
 
 .gallery{
 
-    padding:130px 0;
+    padding:140px 0;
 
-    background:#0d0d0d;
+    background:#101010;
 
     text-align:center;
 
@@ -660,15 +899,18 @@ section{
 
     display:grid;
 
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:
+        repeat(2,1fr);
 
-    gap:12px;
+    gap:10px;
 
 }
 
 .gallery-item{
 
     overflow:hidden;
+
+    cursor:pointer;
 
     position:relative;
 
@@ -682,7 +924,9 @@ section{
 
     object-fit:cover;
 
-    transition:transform 1s ease;
+    transition:
+        transform 1s ease,
+        filter .5s ease;
 
 }
 
@@ -690,46 +934,129 @@ section{
 
     transform:scale(1.08);
 
-}
-
-.gallery-item:nth-child(1){
-
-    grid-row:span 2;
+    filter:brightness(.7);
 
 }
 
-.gallery-item:nth-child(1) img{
+.gallery-item::after{
 
-    aspect-ratio:auto;
+    content:"VIEW";
 
-    height:100%;
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.8);
+
+    opacity:0;
+
+    letter-spacing:3px;
+
+    font-size:9px;
+
+    color:#fff;
+
+    transition:.4s;
+
+}
+
+.gallery-item:hover::after{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
 
 }
 
 
 /* =========================================================
-   MAP
+   LIGHTBOX
+========================================================= */
+
+#lightbox{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.95);
+
+    z-index:99998;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+}
+
+#lightbox.active{
+
+    display:flex;
+
+}
+
+#lightbox img{
+
+    max-width:95%;
+
+    max-height:90vh;
+
+    object-fit:contain;
+
+}
+
+.close-lightbox{
+
+    position:absolute;
+
+    top:20px;
+
+    right:25px;
+
+    font-size:35px;
+
+    color:#fff;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================================================
+   LOCATION
 ========================================================= */
 
 .location{
 
-    padding:130px 0;
+    padding:140px 0;
 
     text-align:center;
 
-}
-
-.map-wrapper{
-
-    margin-top:50px;
-
-    border:1px solid rgba(255,255,255,.12);
-
-    overflow:hidden;
+    background:#080808;
 
 }
 
-.map-wrapper iframe{
+.map{
+
+    margin-top:55px;
+
+    width:100%;
+
+    border:1px solid rgba(255,255,255,.1);
+
+}
+
+.map iframe{
 
     width:100%;
 
@@ -743,6 +1070,38 @@ section{
 
 }
 
+.map-button{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:16px 32px;
+
+    border:1px solid var(--gold);
+
+    text-decoration:none;
+
+    color:#fff;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    transition:.4s;
+
+}
+
+.map-button:hover{
+
+    background:var(--gold);
+
+    color:#000;
+
+}
+
 
 /* =========================================================
    RSVP
@@ -750,23 +1109,23 @@ section{
 
 .rsvp{
 
-    padding:130px 0;
+    padding:150px 0;
 
     text-align:center;
 
     background:
 
         linear-gradient(
-            rgba(0,0,0,.72),
-            rgba(0,0,0,.88)
+            rgba(0,0,0,.65),
+            rgba(0,0,0,.9)
         ),
 
         url("assets/images/foto4.jpg")
-        center/cover fixed;
+        center / cover fixed;
 
 }
 
-.rsvp-box{
+.rsvp-content{
 
     max-width:700px;
 
@@ -774,41 +1133,25 @@ section{
 
 }
 
-.rsvp-text{
-
-    margin:30px auto;
-
-    color:#aaa;
-
-    line-height:1.8;
-
-    font-size:14px;
-
-}
-
 .rsvp-button{
 
-    display:inline-flex;
+    display:inline-block;
 
-    align-items:center;
+    margin-top:35px;
 
-    justify-content:center;
-
-    gap:10px;
-
-    padding:17px 35px;
+    padding:18px 35px;
 
     border:1px solid var(--gold);
 
-    color:#fff;
-
     text-decoration:none;
 
+    color:#fff;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
     text-transform:uppercase;
-
-    letter-spacing:2px;
-
-    font-size:10px;
 
     transition:.4s;
 
@@ -829,55 +1172,52 @@ section{
 
 .closing{
 
-    min-height:70vh;
+    min-height:80vh;
 
     display:flex;
 
-    align-items:center;
-
     justify-content:center;
+
+    align-items:center;
 
     text-align:center;
 
     background:
 
         linear-gradient(
-            rgba(0,0,0,.35),
-            rgba(0,0,0,.8)
+            rgba(0,0,0,.3),
+            rgba(0,0,0,.85)
         ),
 
         url("assets/images/cover.jpg")
-        center/cover no-repeat;
-
-}
-
-.closing-content{
-
-    width:90%;
+        center / cover no-repeat;
 
 }
 
 .closing-name{
 
+    margin-top:20px;
+
     font-family:'Cormorant Garamond',serif;
 
-    font-size:clamp(60px,12vw,120px);
+    font-size:
+        clamp(65px,14vw,140px);
 
-    color:var(--gold-light);
+    color:var(--gold2);
 
 }
 
-.closing p{
+.closing-text{
 
-    color:#ddd;
+    margin-top:20px;
 
-    font-size:11px;
+    font-size:9px;
 
     letter-spacing:4px;
 
     text-transform:uppercase;
 
-    margin-top:20px;
+    color:#ccc;
 
 }
 
@@ -888,42 +1228,17 @@ section{
 
 footer{
 
-    background:#050505;
-
     padding:30px;
 
     text-align:center;
 
+    background:#050505;
+
     color:#555;
 
-    font-size:9px;
+    font-size:8px;
 
-    letter-spacing:2px;
-
-}
-
-
-/* =========================================================
-   FADE ANIMATION
-========================================================= */
-
-.fade{
-
-    opacity:0;
-
-    transform:translateY(35px);
-
-    transition:
-        opacity 1s ease,
-        transform 1s ease;
-
-}
-
-.fade.show{
-
-    opacity:1;
-
-    transform:translateY(0);
+    letter-spacing:3px;
 
 }
 
@@ -938,11 +1253,11 @@ footer{
 
         grid-template-columns:1fr;
 
-        gap:50px;
+        gap:55px;
 
     }
 
-    .event-image{
+    .event-photo{
 
         max-width:500px;
 
@@ -950,27 +1265,7 @@ footer{
 
     }
 
-    .gallery-grid{
-
-        grid-template-columns:1fr 1fr;
-
-    }
-
-    .gallery-item:nth-child(1){
-
-        grid-row:span 1;
-
-    }
-
-    .gallery-item:nth-child(1) img{
-
-        aspect-ratio:1/1;
-
-        height:auto;
-
-    }
-
-    .map-wrapper iframe{
+    .map iframe{
 
         height:350px;
 
@@ -980,55 +1275,77 @@ footer{
 
 @media(max-width:480px){
 
-    .hero-small{
+    .hero-name{
 
-        letter-spacing:4px;
+        font-size:76px;
 
     }
 
-    .hero-date{
+    .gallery-grid{
 
-        letter-spacing:2px;
+        gap:6px;
 
     }
 
     .countdown{
 
-        gap:20px;
-
-    }
-
-    .count-box{
-
-        min-width:60px;
-
-    }
-
-    .section-title{
-
-        font-size:48px;
+        gap:25px;
 
     }
 
 }
 
 </style>
+
 </head>
 
 
-<body>
+<body class="locked">
 
 
 <!-- =====================================================
-     LOADER
+     LOADING
 ===================================================== -->
 
 <div id="loader">
 
-    <div class="loader-ring"></div>
+    <div class="loader-circle"></div>
 
     <div class="loader-text">
-        MEMUAT UNDANGAN
+        LOADING INVITATION
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     OPEN INVITATION
+===================================================== -->
+
+<div id="opening">
+
+    <div class="opening-content">
+
+        <div class="opening-small">
+            You're Invited To
+        </div>
+
+        <div class="opening-title">
+            Birthday
+        </div>
+
+        <div class="opening-subtitle"
+             id="openingGuest">
+            A Special Celebration
+        </div>
+
+        <button class="open-button"
+                id="openInvitation">
+
+            Open Invitation
+
+        </button>
+
     </div>
 
 </div>
@@ -1038,14 +1355,13 @@ footer{
      MUSIC
 ===================================================== -->
 
-<audio id="birthdayMusic"
+<audio id="music"
        src="assets/music/birthday.mp3"
        loop>
 </audio>
 
-<button class="music-btn"
-        id="musicButton"
-        aria-label="Music">
+<button class="music-button"
+        id="musicButton">
 
     ♪
 
@@ -1058,28 +1374,48 @@ footer{
 
 <section class="hero">
 
+    <div class="hero-bg"></div>
+
     <div class="hero-content">
 
         <div class="hero-small">
             The Birthday Celebration
         </div>
 
-        <div class="hero-name">
+        <div class="hero-name"
+             id="birthdayName">
             RENALDI
         </div>
 
-        <div class="hero-age">
+        <div class="hero-age"
+             id="birthdayAge">
             31
         </div>
 
-        <div class="hero-date">
+        <div class="hero-date"
+             id="heroDate">
             SABTU • 12 DESEMBER 2026
+        </div>
+
+        <div class="guest-name">
+
+            Dear
+
+            <strong id="guestName">
+                You
+            </strong>
+
         </div>
 
     </div>
 
-    <div class="scroll-down">
-        Scroll
+
+    <div class="scroll-indicator">
+
+        SCROLL
+
+        <span></span>
+
     </div>
 
 </section>
@@ -1093,21 +1429,27 @@ footer{
 
     <div class="container fade">
 
-        <div class="section-label">
+        <div class="label">
             You're Invited
         </div>
 
-        <h2 class="section-title">
+        <h2 class="title">
             Let's Celebrate
         </h2>
 
-        <p class="section-text">
+        <p class="description">
 
             Dengan penuh kebahagiaan,
             saya mengundang keluarga,
             sahabat dan orang-orang terdekat
             untuk hadir dan merayakan
-            hari istimewa bersama.
+            hari istimewa ini bersama.
+
+            <br><br>
+
+            Kehadiran dan doa baik Anda
+            akan menjadi kebahagiaan
+            tersendiri bagi saya.
 
         </p>
 
@@ -1124,18 +1466,18 @@ footer{
 
     <div class="container fade">
 
-        <div class="section-label">
-            Counting Down
+        <div class="label">
+            Save The Date
         </div>
 
-        <h2 class="section-title">
-            Until The Day
+        <h2 class="title">
+            Counting Down
         </h2>
 
 
         <div class="countdown">
 
-            <div class="count-box">
+            <div>
 
                 <div class="count-number"
                      id="days">
@@ -1149,7 +1491,7 @@ footer{
             </div>
 
 
-            <div class="count-box">
+            <div>
 
                 <div class="count-number"
                      id="hours">
@@ -1163,7 +1505,7 @@ footer{
             </div>
 
 
-            <div class="count-box">
+            <div>
 
                 <div class="count-number"
                      id="minutes">
@@ -1177,7 +1519,7 @@ footer{
             </div>
 
 
-            <div class="count-box">
+            <div>
 
                 <div class="count-number"
                      id="seconds">
@@ -1208,21 +1550,21 @@ footer{
         <div class="event-grid">
 
 
-            <div class="event-image fade">
+            <div class="event-photo fade">
 
                 <img src="assets/images/foto1.jpg"
-                     alt="Birthday">
+                     alt="Birthday Photo">
 
             </div>
 
 
             <div class="fade">
 
-                <div class="section-label">
+                <div class="label">
                     The Celebration
                 </div>
 
-                <h2 class="section-title">
+                <h2 class="title">
                     Save The Date
                 </h2>
 
@@ -1236,8 +1578,11 @@ footer{
                             Date
                         </div>
 
-                        <div class="detail-value">
+                        <div class="detail-value"
+                             id="eventDate">
+
                             Sabtu, 12 Desember 2026
+
                         </div>
 
                     </div>
@@ -1249,8 +1594,11 @@ footer{
                             Time
                         </div>
 
-                        <div class="detail-value">
+                        <div class="detail-value"
+                             id="eventTime">
+
                             19.00 WIB – Selesai
+
                         </div>
 
                     </div>
@@ -1259,11 +1607,14 @@ footer{
                     <div class="detail">
 
                         <div class="detail-label">
-                            Location
+                            Venue
                         </div>
 
-                        <div class="detail-value">
+                        <div class="detail-value"
+                             id="venue">
+
                             Nama Tempat Acara
+
                         </div>
 
                     </div>
@@ -1275,8 +1626,11 @@ footer{
                             Address
                         </div>
 
-                        <div class="detail-value">
+                        <div class="detail-value"
+                             id="address">
+
                             Jl. Contoh Alamat No. 123
+
                         </div>
 
                     </div>
@@ -1303,11 +1657,11 @@ footer{
 
         <div class="fade">
 
-            <div class="section-label">
+            <div class="label">
                 Memories
             </div>
 
-            <h2 class="section-title">
+            <h2 class="title">
                 Gallery
             </h2>
 
@@ -1319,40 +1673,42 @@ footer{
 
             <div class="gallery-item fade">
 
-                <img src="assets/images/foto2.jpg"
-                     alt="Gallery">
+                <img src="assets/images/foto2.jpg">
 
             </div>
 
 
             <div class="gallery-item fade">
 
-                <img src="assets/images/foto3.jpg"
-                     alt="Gallery">
+                <img src="assets/images/foto3.jpg">
 
             </div>
 
 
             <div class="gallery-item fade">
 
-                <img src="assets/images/foto4.jpg"
-                     alt="Gallery">
+                <img src="assets/images/foto4.jpg">
 
             </div>
 
 
             <div class="gallery-item fade">
 
-                <img src="assets/images/cover.jpg"
-                     alt="Gallery">
+                <img src="assets/images/cover.jpg">
 
             </div>
 
 
             <div class="gallery-item fade">
 
-                <img src="assets/images/foto1.jpg"
-                     alt="Gallery">
+                <img src="assets/images/foto1.jpg">
+
+            </div>
+
+
+            <div class="gallery-item fade">
+
+                <img src="assets/images/foto2.jpg">
 
             </div>
 
@@ -1365,6 +1721,21 @@ footer{
 
 
 <!-- =====================================================
+     LIGHTBOX
+===================================================== -->
+
+<div id="lightbox">
+
+    <div class="close-lightbox">
+        ×
+    </div>
+
+    <img id="lightboxImage">
+
+</div>
+
+
+<!-- =====================================================
      LOCATION
 ===================================================== -->
 
@@ -1372,60 +1743,51 @@ footer{
 
     <div class="container fade">
 
-        <div class="section-label">
+        <div class="label">
             Where We Meet
         </div>
 
-        <h2 class="section-title">
+        <h2 class="title">
             Location
         </h2>
 
-        <p class="section-text"
-           style="margin:25px auto 0;">
+        <p class="description">
 
-            Kami akan sangat senang
-            bertemu dengan Anda
-            di acara spesial ini.
+            Catat tanggalnya dan
+            jangan sampai terlewat.
+
+            <br>
+
+            Kami tunggu kehadiran Anda.
 
         </p>
 
 
-        <div class="map-wrapper">
-
-            <!--
-            GANTI LINK GOOGLE MAPS DI BAWAH
-
-            Contoh:
-
-            https://www.google.com/maps/embed?pb=XXXX
-
-            -->
+        <div class="map">
 
             <iframe
+                id="mapFrame"
 
                 src="https://www.google.com/maps?q=Jakarta&output=embed"
 
-                allowfullscreen=""
                 loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
+
+                allowfullscreen>
 
             </iframe>
 
         </div>
 
 
-        <br>
+        <a id="mapButton"
 
+           class="map-button"
 
-        <a
+           href="https://www.google.com/maps/search/?api=1&query=Jakarta"
 
-            href="https://www.google.com/maps/search/?api=1&query=Jakarta"
+           target="_blank">
 
-            target="_blank"
-
-            class="rsvp-button">
-
-            Buka Google Maps
+            Open Google Maps
 
         </a>
 
@@ -1442,41 +1804,31 @@ footer{
 
     <div class="container">
 
-        <div class="rsvp-box fade">
+        <div class="rsvp-content fade">
 
-            <div class="section-label">
+            <div class="label">
                 Confirmation
             </div>
 
-            <h2 class="section-title">
+            <h2 class="title">
                 Will You Join Us?
             </h2>
 
-            <p class="rsvp-text">
+            <p class="description">
 
-                Kehadiran dan doa baik Anda
-                akan menjadi kebahagiaan
-                tersendiri bagi kami.
+                Mohon konfirmasi kehadiran
+                Anda melalui WhatsApp.
 
             </p>
 
 
-            <!--
-            GANTI NOMOR WHATSAPP
+            <a id="whatsappButton"
 
-            Format:
+               class="rsvp-button"
 
-            628xxxxxxxxxx
+               href="#"
 
-            -->
-
-            <a
-
-                class="rsvp-button"
-
-                href="https://wa.me/6281234567890?text=Halo%20Renaldi,%20saya%20akan%20hadir%20di%20acara%20ulang%20tahun."
-
-                target="_blank">
+               target="_blank">
 
                 ✦ Konfirmasi Kehadiran
 
@@ -1495,19 +1847,25 @@ footer{
 
 <section class="closing">
 
-    <div class="closing-content fade">
+    <div class="container fade">
 
-        <div class="section-label">
+        <div class="label">
             See You There
         </div>
 
-        <div class="closing-name">
+        <div class="closing-name"
+             id="closingName">
+
             RENALDI
+
         </div>
 
-        <p>
-            Thank you for being part of my special day
-        </p>
+        <div class="closing-text">
+
+            Thank you for being part
+            of my special day
+
+        </div>
 
     </div>
 
@@ -1528,87 +1886,407 @@ footer{
 <script>
 
 /* =========================================================
-   LOADER
+   =========================================================
+
+                 CONFIGURATION AREA
+
+   CUKUP EDIT BAGIAN INI
+
+   =========================================================
 ========================================================= */
 
-window.addEventListener("load", function(){
 
-    setTimeout(function(){
+const CONFIG = {
 
-        document
-            .getElementById("loader")
-            .classList.add("hide");
 
-    },800);
+    /* ===============================
+       DATA ULANG TAHUN
+    =============================== */
 
-});
+    name:
+        "RENALDI",
+
+    age:
+        "31",
+
+
+    /* ===============================
+       TANGGAL ACARA
+    =============================== */
+
+    dateText:
+        "SABTU • 12 DESEMBER 2026",
+
+    eventDate:
+        "Sabtu, 12 Desember 2026",
+
+    eventTime:
+        "19.00 WIB – Selesai",
+
+
+    /* ===============================
+       COUNTDOWN
+
+       Format:
+       YYYY-MM-DDTHH:MM:SS+07:00
+
+    =============================== */
+
+    countdownDate:
+        "2026-12-12T19:00:00+07:00",
+
+
+    /* ===============================
+       TEMPAT
+    =============================== */
+
+    venue:
+        "Nama Tempat Acara",
+
+    address:
+        "Jl. Contoh Alamat No. 123",
+
+
+    /* ===============================
+       GOOGLE MAPS
+
+       GANTI DENGAN LINK LOKASI
+       GOOGLE MAPS KAMU
+
+    =============================== */
+
+    mapEmbed:
+        "https://www.google.com/maps?q=Jakarta&output=embed",
+
+    mapLink:
+        "https://www.google.com/maps/search/?api=1&query=Jakarta",
+
+
+    /* ===============================
+       WHATSAPP
+
+       Format:
+       628xxxxxxxxxx
+
+    =============================== */
+
+    whatsapp:
+        "6281234567890",
+
+
+    /* ===============================
+       PESAN WHATSAPP
+    =============================== */
+
+    whatsappMessage:
+        "Halo Renaldi, saya akan hadir di acara ulang tahun kamu."
+
+
+};
 
 
 /* =========================================================
-   MUSIC
+   DATA NAMA TAMU DARI URL
 ========================================================= */
 
-const music =
-    document.getElementById("birthdayMusic");
+function getGuestName(){
 
-const musicButton =
-    document.getElementById("musicButton");
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
 
+    const guest =
+        params.get("to");
 
-let musicPlaying = false;
+    if(!guest){
 
-
-musicButton.addEventListener("click", function(){
-
-    if(musicPlaying){
-
-        music.pause();
-
-        musicButton.innerHTML = "♪";
-
-        musicButton.classList.remove("playing");
-
-        musicPlaying = false;
-
-    }else{
-
-        music.play()
-            .then(function(){
-
-                musicButton.innerHTML = "♫";
-
-                musicButton.classList.add("playing");
-
-                musicPlaying = true;
-
-            })
-            .catch(function(){
-
-                alert(
-                    "Silakan tekan tombol musik sekali lagi."
-                );
-
-            });
+        return "You";
 
     }
 
-});
+    return decodeURIComponent(guest);
+
+}
+
+
+/* =========================================================
+   SET DATA
+========================================================= */
+
+const guest =
+    getGuestName();
+
+
+document.getElementById(
+    "birthdayName"
+).innerText =
+    CONFIG.name;
+
+
+document.getElementById(
+    "birthdayAge"
+).innerText =
+    CONFIG.age;
+
+
+document.getElementById(
+    "heroDate"
+).innerText =
+    CONFIG.dateText;
+
+
+document.getElementById(
+    "eventDate"
+).innerText =
+    CONFIG.eventDate;
+
+
+document.getElementById(
+    "eventTime"
+).innerText =
+    CONFIG.eventTime;
+
+
+document.getElementById(
+    "venue"
+).innerText =
+    CONFIG.venue;
+
+
+document.getElementById(
+    "address"
+).innerText =
+    CONFIG.address;
+
+
+document.getElementById(
+    "guestName"
+).innerText =
+    guest;
+
+
+document.getElementById(
+    "closingName"
+).innerText =
+    CONFIG.name;
+
+
+document.getElementById(
+    "openingGuest"
+).innerText =
+    "Dear " + guest;
+
+
+/* =========================================================
+   GOOGLE MAP
+========================================================= */
+
+document.getElementById(
+    "mapFrame"
+).src =
+    CONFIG.mapEmbed;
+
+
+document.getElementById(
+    "mapButton"
+).href =
+    CONFIG.mapLink;
+
+
+/* =========================================================
+   WHATSAPP
+========================================================= */
+
+const whatsappURL =
+
+    "https://wa.me/" +
+
+    CONFIG.whatsapp +
+
+    "?text=" +
+
+    encodeURIComponent(
+        CONFIG.whatsappMessage
+    );
+
+
+document.getElementById(
+    "whatsappButton"
+).href =
+    whatsappURL;
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+window.addEventListener(
+    "load",
+
+    function(){
+
+        setTimeout(
+
+            function(){
+
+                document
+                    .getElementById("loader")
+                    .classList
+                    .add("hide");
+
+            },
+
+            800
+
+        );
+
+    }
+
+);
+
+
+/* =========================================================
+   OPEN INVITATION
+========================================================= */
+
+const opening =
+    document.getElementById(
+        "opening"
+    );
+
+
+const openButton =
+    document.getElementById(
+        "openInvitation"
+    );
+
+
+const music =
+    document.getElementById(
+        "music"
+    );
+
+
+const musicButton =
+    document.getElementById(
+        "musicButton"
+    );
+
+
+openButton.addEventListener(
+
+    "click",
+
+    function(){
+
+        opening.classList.add(
+            "hide"
+        );
+
+        document.body.classList.remove(
+            "locked"
+        );
+
+
+        music.play()
+
+        .then(
+
+            function(){
+
+                musicButton
+                    .classList
+                    .add("playing");
+
+                musicButton.innerHTML =
+                    "♫";
+
+            }
+
+        )
+
+        .catch(
+
+            function(){
+
+                console.log(
+                    "Autoplay blocked"
+                );
+
+            }
+
+        );
+
+    }
+
+);
+
+
+/* =========================================================
+   MUSIC CONTROL
+========================================================= */
+
+let playing = false;
+
+
+musicButton.addEventListener(
+
+    "click",
+
+    function(){
+
+        if(playing){
+
+            music.pause();
+
+            musicButton.innerHTML =
+                "♪";
+
+            musicButton.classList.remove(
+                "playing"
+            );
+
+            playing = false;
+
+        }
+
+        else{
+
+            music.play()
+
+            .then(
+
+                function(){
+
+                    musicButton.innerHTML =
+                        "♫";
+
+                    musicButton.classList.add(
+                        "playing"
+                    );
+
+                    playing = true;
+
+                }
+
+            );
+
+        }
+
+    }
+
+);
 
 
 /* =========================================================
    COUNTDOWN
 ========================================================= */
 
-/*
-   GANTI TANGGAL ACARA DI SINI
-
-   Format:
-
-   YYYY-MM-DDTHH:MM:SS+07:00
-*/
-
 const targetDate =
-    new Date("2026-12-12T19:00:00+07:00");
+    new Date(
+        CONFIG.countdownDate
+    ).getTime();
 
 
 function updateCountdown(){
@@ -1616,26 +2294,28 @@ function updateCountdown(){
     const now =
         new Date().getTime();
 
-    const target =
-        targetDate.getTime();
 
     const distance =
-        target - now;
+        targetDate - now;
 
 
     if(distance <= 0){
 
-        document.getElementById("days")
-            .innerText = "00";
+        document.getElementById(
+            "days"
+        ).innerText = "00";
 
-        document.getElementById("hours")
-            .innerText = "00";
+        document.getElementById(
+            "hours"
+        ).innerText = "00";
 
-        document.getElementById("minutes")
-            .innerText = "00";
+        document.getElementById(
+            "minutes"
+        ).innerText = "00";
 
-        document.getElementById("seconds")
-            .innerText = "00";
+        document.getElementById(
+            "seconds"
+        ).innerText = "00";
 
         return;
 
@@ -1651,46 +2331,84 @@ function updateCountdown(){
 
     const hours =
         Math.floor(
-            (distance %
-            (1000 * 60 * 60 * 24)) /
+
+            (
+
+                distance %
+
+                (1000 * 60 * 60 * 24)
+
+            )
+
+            /
+
             (1000 * 60 * 60)
+
         );
 
 
     const minutes =
         Math.floor(
-            (distance %
-            (1000 * 60 * 60)) /
+
+            (
+
+                distance %
+
+                (1000 * 60 * 60)
+
+            )
+
+            /
+
             (1000 * 60)
+
         );
 
 
     const seconds =
         Math.floor(
-            (distance %
-            (1000 * 60)) /
+
+            (
+
+                distance %
+
+                (1000 * 60)
+
+            )
+
+            /
+
             1000
+
         );
 
 
-    document.getElementById("days")
-        .innerText =
-        String(days).padStart(2,"0");
+    document.getElementById(
+        "days"
+    ).innerText =
+        String(days)
+        .padStart(2,"0");
 
 
-    document.getElementById("hours")
-        .innerText =
-        String(hours).padStart(2,"0");
+    document.getElementById(
+        "hours"
+    ).innerText =
+        String(hours)
+        .padStart(2,"0");
 
 
-    document.getElementById("minutes")
-        .innerText =
-        String(minutes).padStart(2,"0");
+    document.getElementById(
+        "minutes"
+    ).innerText =
+        String(minutes)
+        .padStart(2,"0");
 
 
-    document.getElementById("seconds")
-        .innerText =
-        String(seconds).padStart(2,"0");
+    document.getElementById(
+        "seconds"
+    ).innerText =
+        String(seconds)
+        .padStart(2,"0");
 
 }
 
@@ -1700,6 +2418,7 @@ setInterval(
     1000
 );
 
+
 updateCountdown();
 
 
@@ -1708,7 +2427,9 @@ updateCountdown();
 ========================================================= */
 
 const fadeElements =
-    document.querySelectorAll(".fade");
+    document.querySelectorAll(
+        ".fade"
+    );
 
 
 const observer =
@@ -1716,120 +2437,163 @@ const observer =
 
         function(entries){
 
-            entries.forEach(function(entry){
+            entries.forEach(
 
-                if(entry.isIntersecting){
+                function(entry){
 
-                    entry.target
-                        .classList
-                        .add("show");
+                    if(
+                        entry.isIntersecting
+                    ){
+
+                        entry.target
+                            .classList
+                            .add("show");
+
+                    }
 
                 }
 
-            });
+            );
 
         },
 
         {
 
-            threshold:0.15
+            threshold:.15
 
         }
 
     );
 
 
-fadeElements.forEach(function(element){
+fadeElements.forEach(
 
-    observer.observe(element);
+    function(element){
 
-});
+        observer.observe(
+            element
+        );
 
-
-/* =========================================================
-   AUTO START MUSIC AFTER FIRST INTERACTION
-========================================================= */
-
-let musicStarted = false;
-
-
-function startMusic(){
-
-    if(musicStarted){
-        return;
     }
 
-
-    music.play()
-        .then(function(){
-
-            musicPlaying = true;
-
-            musicStarted = true;
-
-            musicButton.innerHTML = "♫";
-
-            musicButton.classList.add("playing");
-
-        })
-        .catch(function(){
-
-            // Browser memblokir autoplay.
-            // User tetap bisa menekan tombol musik.
-
-        });
-
-
-    document.removeEventListener(
-        "click",
-        startMusic
-    );
-
-    document.removeEventListener(
-        "touchstart",
-        startMusic
-    );
-
-}
-
-
-document.addEventListener(
-    "click",
-    startMusic
-);
-
-
-document.addEventListener(
-    "touchstart",
-    startMusic
 );
 
 
 /* =========================================================
-   IMAGE FADE
+   GALLERY LIGHTBOX
 ========================================================= */
 
-const images =
-    document.querySelectorAll("img");
-
-
-images.forEach(function(img){
-
-    img.addEventListener(
-        "load",
-        function(){
-
-            img.style.opacity = "1";
-
-        }
+const galleryImages =
+    document.querySelectorAll(
+        ".gallery-item img"
     );
 
-});
 
+const lightbox =
+    document.getElementById(
+        "lightbox"
+    );
+
+
+const lightboxImage =
+    document.getElementById(
+        "lightboxImage"
+    );
+
+
+galleryImages.forEach(
+
+    function(image){
+
+        image.addEventListener(
+
+            "click",
+
+            function(){
+
+                lightboxImage.src =
+                    image.src;
+
+                lightbox.classList.add(
+                    "active"
+                );
+
+            }
+
+        );
+
+    }
+
+);
+
+
+document
+    .querySelector(
+        ".close-lightbox"
+    )
+    .addEventListener(
+
+        "click",
+
+        function(){
+
+            lightbox.classList.remove(
+                "active"
+            );
+
+        }
+
+    );
+
+
+lightbox.addEventListener(
+
+    "click",
+
+    function(e){
+
+        if(
+            e.target === lightbox
+        ){
+
+            lightbox.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+
+);
+
+
+/* =========================================================
+   ESC CLOSE LIGHTBOX
+========================================================= */
+
+document.addEventListener(
+
+    "keydown",
+
+    function(e){
+
+        if(
+            e.key === "Escape"
+        ){
+
+            lightbox.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+
+);
 
 </script>
 
 
 </body>
+
 </html>
-```
